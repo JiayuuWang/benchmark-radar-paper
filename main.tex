@@ -613,31 +613,18 @@ Meta Research & LangChain\\
 
 The contributor wanted to determine whether a proposed evaluation duplicated existing work. They surveyed work published in August 2026 on credit assignment in agentic training, using small Qwen-series models as a requirement for reproducible baseline experiments. The search produced a focused comparison table that the contributor used to assess the proposed design.
 
-The contributor gave the task to a coding agent together with the public setup instructions for Benchmark Radar. The agent installed the command-line client and the Benchmark Radar Skill, a set of instructions for using the client. It then downloaded the local corpus and queried candidate records offline (Figure~\ref{fig:use-case-session}).
+The contributor gave the task to a coding agent together with the public setup instructions for Benchmark Radar. The agent installed the command-line client and the Benchmark Radar Skill, a set of instructions for using the client, confirmed the local catalog, and reviewed the commands for searching and inspecting records (Figure~\ref{fig:use-case-session}, left).
 
-\RadarFigure
-  {agent-session.png}
-  {A coding agent installs the Benchmark Radar client and its usage instructions, then runs local queries.}
-  {fig:use-case-session}
+The agent then searched the catalog by topic, assembled candidate records for the two themes in the request, and inspected the returned matches (Figure~\ref{fig:use-case-session}, center). It opened individual candidates to read their descriptions, release dates, and linked evidence before choosing records to compare (Figure~\ref{fig:use-case-session}, right).
 
-The agent inspected paper, repository, and dataset links to decide which sources to open next. Figures~\ref{fig:use-case-paper} and~\ref{fig:use-case-code} show two retrieved discovery records: one has a repository link, and the other has both paper and repository links. Neither records a dataset link, leaving dataset availability for a follow-up check.
-
-\RadarFigure
-  {artifact-status-paper.png}
-  {A retrieved discovery record with a repository link for inspecting the implementation. Paper and dataset links are missing from the record.}
-  {fig:use-case-paper}
-
-\RadarFigure
-  {artifact-status-code.png}
-  {A second discovery record provides both paper and repository links. Its dataset link needs a follow-up check.}
-  {fig:use-case-code}
-
-The agent supplemented local queries with web search to find related work described in different terms. It cross-checked the candidate sets and inspected the source evidence before selecting records for the comparison. Figure~\ref{fig:use-case-cross} shows the word matches and score components available for inspecting one retrieved candidate.
-
-\RadarFigure
-  {cross-validation.png}
-  {A candidate record with query-word matches and retrieval-score components for the agent to inspect when judging relevance.}
-  {fig:use-case-cross}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.32\linewidth]{use_case_1.png}\hfill
+  \includegraphics[width=0.32\linewidth]{use_case_2.png}\hfill
+  \includegraphics[width=0.32\linewidth]{use_case_3.png}
+  \caption{A coding agent runs the prior-art check with Benchmark Radar. Left: the agent installs the command-line client and the Benchmark Radar Skill, confirms the local catalog, and reviews the search and inspect commands. Center: a topic search returns the catalog records that match the user's request. Right: inspecting a candidate record returns its description, release date, and linked evidence.}
+  \label{fig:use-case-session}
+\end{figure}
 
 \FloatBarrier
 
