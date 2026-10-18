@@ -19,7 +19,7 @@ figures/%.pdf: figures/%.tex figures/figure-style.tex figure-data.tex catalog-da
 
 figures/corpus-evidence.pdf: figures/corpus-evidence-body.tex
 
-main.pdf: main.tex references.bib figure-data.tex catalog-data.tex findings-data.tex taxonomy-data.tex taxonomy-trend-data.tex figures/corpus-evidence-body.tex $(FIGURE_PDFS) $(TAXONOMY_FIGURES) $(wildcard figures/*.png) Makefile
+main.pdf: main.tex references.bib figure-data.tex catalog-data.tex findings-data.tex taxonomy-data.tex taxonomy-trend-data.tex figures/corpus-evidence-body.tex figures/use-case-session-body.tex $(FIGURE_PDFS) $(TAXONOMY_FIGURES) $(wildcard figures/*.png) Makefile
 	$(LATEXMK) -g -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 # Scan rendered text and raster figures on every normal build, even if the PDF
@@ -41,7 +41,7 @@ arxiv: check-small-numbers
 	rm -rf build/arxiv
 	mkdir -p build/arxiv/figures
 	cp main.tex main.bbl figure-data.tex catalog-data.tex findings-data.tex taxonomy-data.tex taxonomy-trend-data.tex build/arxiv/
-	cp $(FIGURE_PDFS) $(TAXONOMY_FIGURES) figures/corpus-evidence-body.tex figures/*.png build/arxiv/figures/
+	cp $(FIGURE_PDFS) $(TAXONOMY_FIGURES) figures/corpus-evidence-body.tex figures/use-case-session-body.tex figures/*.png build/arxiv/figures/
 	tar -czf arxiv.tar.gz -C build/arxiv .
 
 # Keep tracked PDFs; remove only intermediates and the upload staging area.

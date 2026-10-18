@@ -349,40 +349,14 @@ Figure~\ref{fig:discovery-trends} complements source coverage with the daily rea
 \section{Worked Example: Checking Prior Art}
 \label{sec:worked-example}
 
-Before designing a new evaluation, a contributor surveyed August work on credit assignment in agentic training, with small Qwen-series models as a requirement for reproducible baselines. A coding agent installed the Benchmark Radar client and its public Skill, downloaded the corpus, and searched locally. It inspected the recorded paper, repository, and dataset links, tried additional web searches for work described in different terms, and read the source evidence before assembling the related-work table in Table~\ref{tab:use-case-survey}.
-
-The contributor used the table to assess whether the proposed evaluation duplicated existing work. Appendix~\ref{app:use-case} retains the session screenshots and an earlier manually assembled comparison.
-
-\begin{center}
-\centering
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.25}
-\centerline{\resizebox{0.98\textwidth}{!}{%
-\begin{tabular}{L{0.45cm}L{3.05cm}L{1.65cm}L{2.35cm}L{3.45cm}L{2.55cm}L{2.9cm}}
-\toprule
-\textbf{\#} & \textbf{Work} & \textbf{Published} & \textbf{Qwen base model(s)} & \textbf{Credit-assignment focus} & \textbf{Agentic benchmarks used} & \textbf{Link} \\
-\midrule
-1 & SRPO: Self-Reflective Policy Optimization for Long-Horizon Reasoning & 2026-08-25 & Qwen3-8B (also Qwen3-1.7B / 32B scaling) & Reflection-conditioned dense token-level signals convert sparse terminal reward into training signal & AIME'24, WebShop, ALFWorld, SWE-Bench-Lite & \url{https://arxiv.org/abs/2608.23493} \url{https://github.com/Galleons2029/SRPO} \\
-2 & ContextPilot: Teaching Agents for Proactive Context Management via Fine-grained RL & 2026-08-28 & Qwen3-8B, Qwen3-14B & Coarse-grained $\rightarrow$ action-level credit assignment over branched trajectories during agentic RL & InfBench (InfiniteBench), NovelQA, LongMemEval, BrowseComp+ & \url{https://arxiv.org/abs/2608.28476} \url{https://github.com/Tencent/ContextPilot} \\
-3 & SkillGate: Training In-Policy Skill Selection in Long-Horizon Agents & 2026-08-21 & Qwen3.5-9B (SFT checkpoint, RL init) & Selector credit starvation; partitions token support into two credit channels (outcome vs.\ action-local advantage) & 5 agentic benchmarks incl.\ SkillsBench, SWE (16-candidate skill slate) & \url{https://arxiv.org/abs/2608.18852} \\
-4 & CIPO: Contextual Information Policy Optimization for Search Agents & 2026-08-06 & Qwen2.5-3B-Instruct, Qwen2.5-7B-Instruct & Dense turn-level credit (EALR) to evidence-using reasoning actions, combined with outcome reward & HotpotQA, 2WikiMultiHopQA, MuSiQue, Bamboogle + 3 OOD & \url{https://arxiv.org/abs/2608.06128} \\
-5 & MoRSE: Task-Oriented Multi-Agent System with Mixture of Role-Subtask Experts & 2026-08-10 & Qwen3-4B-Instruct (one of three backbones; also Llama-3.1-8B, Gemma-4-31B) & Hierarchical GRPO with two-layer credit assignment (isolates expert vs.\ routing quality) & Code-generation benchmarks (multi-agent), held-out task domains & \url{https://arxiv.org/abs/2608.09251} \\
-\bottomrule
-\end{tabular}%
-}}
-\captionof{table}{Summary table of recent work on credit assignment in agentic training, assembled during the session. Each row links to its arXiv record and, where available, its repository.}
-\label{tab:use-case-survey}
-\end{center}
-
-
+Before designing a new evaluation, a contributor searched August 2026 work on credit assignment in agentic training that provides small Qwen-series baselines for reproducible experiments. A coding agent installed the Benchmark Radar Skill and queried the catalog and the discovery layer with several topic variants. The discovery layer returned 225 matches; 38 of the 200 retrieved records carry an August 2026 date. After opening each candidate's paper, SRPO and HindSearch met all four conditions: an August submission, a credit-assignment method, a small Qwen backbone, and released code. Appendix~\ref{app:use-case} shows the session and the searches behind this result.
 
 \section{Limitations and Future Work}
 \label{sec:caveat-future-work}
 
 The census describes this catalog at its recorded cutoff. Collection limits, failed requests, missing identifiers, and different snapshot dates affect its coverage. One underlying test can appear as several source records. Broader coverage requires additional source collection and review of the evidence already present.
 
-Retrieval precision, task suitability, and time saved remain to be evaluated. The worked example combines local queries with web search and has no controlled baseline. Lexical matching can miss paraphrases and renamed tasks. Evaluating semantic retrieval \citep{reimers2019sentencebert} will require reviewed relevance judgments across queries and candidate records, including less familiar benchmark families.
+Retrieval precision, task suitability, and time saved remain to be evaluated. The worked example uses local queries and has no controlled baseline. Lexical matching can miss paraphrases and renamed tasks. Evaluating semantic retrieval \citep{reimers2019sentencebert} will require reviewed relevance judgments across queries and candidate records, including less familiar benchmark families.
 
 The arXiv discovery route collects new submissions only, so it misses later versions of papers first posted before the collection window. The searches used for Section~\ref{sec:related-work} missed two relevant earlier studies \citep{yang2026benchmark,akhtar2026plateau}, which a coauthor identified and read.
 
@@ -614,37 +588,17 @@ Meta Research & LangChain\\
 \section{Worked Use Case: Prior-Art Check for a New Evaluation}
 \label{app:use-case}
 
-The contributor wanted to determine whether a proposed evaluation duplicated existing work. They surveyed work published in August 2026 on credit assignment in agentic training, using small Qwen-series models as a requirement for reproducible baseline experiments. The search produced a focused comparison table that the contributor used to assess the proposed design.
+The contributor wanted to determine whether a proposed evaluation duplicated existing work. They gave the task to a coding agent together with the public setup instructions for Benchmark Radar. The agent installed the Benchmark Radar Skill and searched the catalog and discovery layers for August 2026 work on credit assignment in agentic training (Figure~\ref{fig:use-case-session}).
 
-The contributor gave the task to a coding agent together with the public setup instructions for Benchmark Radar. The agent installed the command-line client and the Benchmark Radar Skill, a set of instructions for using the client. It then downloaded the local corpus and queried candidate records offline (Figure~\ref{fig:use-case-session}).
+It compared the normalized catalog records against the unverified discovery leads and opened each August candidate's primary source to confirm the small-Qwen requirement before selecting records to compare. Figure~\ref{fig:use-case-session} lists the commands and the fields each hit returns.
 
-\RadarFigure
-  {agent-session.png}
-  {A coding agent installs the Benchmark Radar client and its usage instructions, then runs local queries.}
-  {fig:use-case-session}
-
-The agent inspected paper, repository, and dataset links to decide which sources to open next. Figures~\ref{fig:use-case-paper} and~\ref{fig:use-case-code} show two retrieved discovery records: one has a repository link, and the other has both paper and repository links.
-
-\RadarFigure
-  {artifact-status-paper.png}
-  {A retrieved discovery record with a repository link for inspecting the implementation.}
-  {fig:use-case-paper}
-
-\RadarFigure
-  {artifact-status-code.png}
-  {A second discovery record provides both paper and repository links.}
-  {fig:use-case-code}
-
-The agent supplemented local queries with web search to find related work described in different terms. It cross-checked the candidate sets and inspected the source evidence before selecting records for the comparison. Figure~\ref{fig:use-case-cross} shows the word matches and score components available for inspecting one retrieved candidate.
-
-\RadarFigure
-  {cross-validation.png}
-  {A candidate record with query-word matches and retrieval-score components for the agent to inspect when judging relevance.}
-  {fig:use-case-cross}
+\begin{center}
+\resizebox{0.98\textwidth}{!}{\input{figures/use-case-session-body.tex}}
+\captionof{figure}{A coding agent runs the prior-art check with Benchmark Radar. The session installs the Skill, searches the catalog and the discovery layer, and verifies each August candidate against its primary source. The \texttt{catalog} layer holds normalized benchmark records; the \texttt{radar} layer holds recent, unverified leads. Search is lexical, so each score ranks results for one query only, and every hit reports the query tokens it matched and missed together with its paper, repository, and dataset link flags.}
+\label{fig:use-case-session}
+\end{center}
 
 \FloatBarrier
-
-The resulting related-work table appears in Table~\ref{tab:use-case-survey} in the main text.
 
 Table~\ref{tab:benchmark-comparison} shows a prior-art comparison table from an earlier benchmark-design effort by one contributor. Each row is one related benchmark and each column one design dimension, with each cell read from a source paper. The contributor reported that assembling it took more effort than any part of that project except producing the benchmark data. Benchmark Radar retrieves candidates for this kind of comparison and exposes the matching words and fields for inspection.
 
